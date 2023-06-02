@@ -1,7 +1,42 @@
 import logo from './logo.svg';
 import './App.css';
+import {Route, Link, Routes, useLocation} from 'react-router-dom';
+import Layout from './layouts/Layout';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Header from './components/Header';
+import Navigation from './components/Navigation';
+import Contests from './pages/Contests';
+import About from './pages/About';
+import FAQ from './pages/FAQ';
+import Contact from './pages/Contact';
+
+
 
 function App() {
+
+  const location = useLocation();
+  console.log('hash', location.hash);
+  console.log('pathname', location.pathname);
+  console.log('search', location.search);
+
+  return (
+    
+      <Layout>
+       <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/yarismalar" element={<Contests />} />
+          <Route path="/hakkimizda" element={<About />} />
+          <Route path="/iletisim" element={<Contact />} />
+          <Route path="/sik-sorulan-sorular" element={<FAQ />} />
+        </Routes>
+       
+      </Layout>
+   
+  )
+
+
   return (
       <div id="page-top">
       <nav className="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -58,6 +93,7 @@ function App() {
           </div>
         </div>
       </header>
+
       <section className="about-section text-center" id="about">
 
 
@@ -121,6 +157,7 @@ function App() {
           <img className="img-fluid" src="assets/img/IMG_7613.JPG" alt="..." width="50%" height="50%"/>
         </div>
       </section>
+
       <section className="projects-section bg-light" id="projects">
         <div className="container px-4 px-lg-5">
           <div className="row gx-0 mb-4 mb-lg-5 align-items-center">
@@ -163,6 +200,9 @@ function App() {
           </div>
         </div>
       </section>
+
+
+
       <section className="signup-section" id="signup">
         <div className="container px-4 px-lg-5">
           <div className="row gx-4 gx-lg-5">
@@ -197,6 +237,8 @@ function App() {
           </div>
         </div>
       </section>
+
+
       <section className="contact-section bg-black">
         <div className="container px-4 px-lg-5">
           <div className="row gx-4 gx-lg-5">
@@ -238,6 +280,8 @@ function App() {
           </div>
         </div>
       </section>
+
+
       <footer className="footer bg-black small text-center text-white-50">
         <div className="container px-4 px-lg-5">Copyright &copy; Your Website 2023</div>
       </footer>
