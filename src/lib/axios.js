@@ -3,11 +3,11 @@ import axios from "axios";
 
 
 const client = axios.create({
-    baseURL: "https://jsonplaceholder.typicode.com/" 
+    //baseURL: "http://localhost:8080/" 
 });
 
 let authClient = axios.create({
-    baseURL: "https://jsonplaceholder.typicode.com/",
+    //baseURL: "http://localhost:8080/",
     headers: {
       Authorization : `Bearer ${localStorage.getItem("access_token")}`
       }
@@ -21,8 +21,8 @@ export  const  post = async (path, params)=>{
     return response.data
 }
 
-export const get = async(path, params)=>{
-    const response = await client.get(path, params);
+export const get = async(path, parameters)=>{
+    const response = await client.get(path, { params:  parameters});
     return response.data
    
 }
