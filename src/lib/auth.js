@@ -16,9 +16,27 @@ export const checkUserAccessToken = async () => {
 };
 
 
-export const login = async (code) => {
+export const loginApiCall = async (code) => {
 
     console.log('calling backend api for token check');
+    /*todo:erdem 
+    daha sonra gerçen end point i asyn await get ile aşağıda kapattığım kısımdaki gibi çağırıp beklendiği gibi döndürürsün.
+    ben şimdilik api den cevap gelmiş gibi döndürüyorum.
+     */
+    return {
+        status:200, 
+        user:{
+            id:1, 
+            first_name:'Erdem', 
+            last_name:'Günay', 
+            long_name:'Erdem Günay',
+            email:'erdem@layermark.com',
+            avatar_url:'https://2019.springio.net/images/speakers/erdem-gunay.jpeg', 
+            access_token:'xyz'
+        }
+    }
+
+    /*
     let response = await get('/auth/login', { 'wcaAuthCode': code });
 
     var accessToken = response.access_token;
@@ -28,4 +46,5 @@ export const login = async (code) => {
     await checkUserAccessToken();
 
     return accessToken;
+    */
 };
