@@ -25,9 +25,9 @@ const Navigation = () => {
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item"><Link to="/hakkimizda" className="nav-link" >Hakkımızda</Link></li>
-              <div className="dropdown">
-               
 
+
+              <div className="dropdown">
                 <Link to="/" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" >Ana Sayfa</Link>
 
                 <ul className="dropdown-menu">
@@ -35,6 +35,8 @@ const Navigation = () => {
                   <li><Link to="/yarismalarim" className="dropdown-item nav-item" >Yarışmalarım</Link></li>
                 </ul>
               </div>
+
+              <li className="nav-item"><Link to="/yarismalar" className="nav-link" >Yarışmalar</Link></li>
 
 
               <div className="dropdown">
@@ -57,7 +59,7 @@ const Navigation = () => {
 
               {user!=null &&(
                 <>
-                 <li className="nav-item"><Link to="" className="nav-link" > {user.long_name}</Link></li>
+                 <li className="nav-item"><Link to="" className="nav-link" > {user.name}</Link></li>
                 <li className="nav-item">
                 <div style={
                   {
@@ -66,7 +68,7 @@ const Navigation = () => {
                     height: "40px",
                     display: 'inline-block', 
                     verticalAlign: "middle",
-                    backgroundImage: `url(${user.avatar_url})`, 
+                    backgroundImage: `url(${user.avatar_thumb_url})`, 
                     backgroundSize: 'contain',
                     backgroundRepeat:'no-repeat'
 

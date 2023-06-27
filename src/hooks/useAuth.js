@@ -8,8 +8,9 @@ export const useAuth = () => {
 
   useEffect(() => {
     const user = getItem("user");
+
     if (user) {
-      addUser(JSON.parse(user));
+      //addUser(JSON.parse(user));
     }
   }, []);
 

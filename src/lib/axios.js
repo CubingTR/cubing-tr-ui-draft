@@ -17,23 +17,23 @@ let authClient = axios.create({
 
 export  const  post = async (path, params)=>{
     console.log("try to post:", path)
-    const response = await client.post(path, params);
+    const response = await client.post("/api" + path, params);
     return response.data
 }
 
 export const get = async(path, parameters)=>{
-    const response = await client.get(path, { params:  parameters});
+    const response = await client.get("/api" + path, { params:  parameters});
     return response.data
    
 }
 
 
 export  const  authPost = async (path, params)=>{
-    const response = await authClient.post(path, params);
+    const response = await authClient.post("/api" + path, params);
     return response.data
 }
 export const authGet = async(path, params)=>{
-    const response = await authClient.get(path, params);
+    const response = await authClient.get("/api" + path, params);
     return response.data
    
 }

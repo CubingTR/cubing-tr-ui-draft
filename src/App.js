@@ -20,7 +20,6 @@ import { useAuth } from './hooks/useAuth';
 function App() {
 
   const { login, logout } = useAuth();
-
   const[user, setUser]=useState(null);
 
 
@@ -38,40 +37,58 @@ function App() {
   // check for callback code 
 
   useEffect(()=>{
-    if (code!==null) {
 
-      /* 
-      todo:Erdem 
-      code nerden geliyor?, code geldikten sonra login olmak için
-      gideceğimiz bir end point var mı?
-      buradaki kurgunun şu olduğunu varsyarak aşağıdaki kod bloğunu ekliyorum.
+    const asyncCheckUserAccessToken = async () =>{
+      let user = await checkUserAccessToken();
 
-      code geldikten sonra biz bir endpoint çağırıp login oluyoruz  ve auth/me ile
-      user a ait bilgileri çekiyoruz.
-      auth/me responsunda  {id:1, user_nam:'erdem', access_token:'xyzdsfsf'} geldiğini varsayıyorum...
-
-      */
-
-      const  asyncCall = async() =>{
-        let response=await loginApiCall(code);
-
-        if (response.status===200){
-          // add login response to context in order to access from everywhere.
-          login(response.user);
-
-          setUser(response.user);
-
-
-        }else{
-          //todo: login failed, show login failed message
-        }
+      if (user) {        
+        login(user);
+        setUser(user);
+      } else {
+        login(null);
+        setUser(null);
       }
-      
-      
-      asyncCall();
 
+      return user;
     }
-  },[code])
+
+
+    asyncCheckUserAccessToken().then((user) => {
+      if (user == null && code !== null) {
+
+        /* 
+        todo:Erdem 
+        code nerden geliyor?, code geldikten sonra login olmak için
+        gideceğimiz bir end point var mı?
+        buradaki kurgunun şu olduğunu varsyarak aşağıdaki kod bloğunu ekliyorum.
+
+        code geldikten sonra biz bir endpoint çağırıp login oluyoruz  ve auth/me ile
+        user a ait bilgileri çekiyoruz.
+        auth/me responsunda  {id:1, user_nam:'erdem', access_token:'xyzdsfsf'} geldiğini varsayıyorum...
+
+        */
+
+        const  asyncCall = async() =>{
+          let response=await loginApiCall(code);
+
+          if (response.status===200){
+            // add login response to context in order to access from everywhere.
+            login(response.user);
+
+            setUser(response.user);
+
+
+          }else{
+            //todo: login failed, show login failed message
+          }
+        }
+        
+        
+        asyncCall();
+
+      }
+    });
+  },[code]);
 
 
   /*
