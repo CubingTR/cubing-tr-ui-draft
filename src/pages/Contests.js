@@ -20,7 +20,7 @@ const Contests = () =>{
       const renderCompetitions = (competitions) => {
         const result = [];
         for (const competition of competitions) {
-          result.push(<a href="registertocomp.html"><li className="list-group-item text-white bg-light">{competition.name}</li></a>);
+          result.push(<a href="registertocomp.html"><li className="list-group-item text-white bg-light">{competition.name} : {competition.year}-{competition.month}-{competition.day} </li></a>);
         }
     
         return <ul>{result}</ul>;
