@@ -4,18 +4,16 @@ import { Route, Link, Routes, useLocation, useSearchParams } from 'react-router-
 import Layout from './layouts/Layout';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Header from './components/Header';
-import Navigation from './components/Navigation';
-import Contests from './pages/Contests';
 import About from './pages/About';
 import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 import { useEffect, useState } from 'react';
-import { get, authGet } from "./lib/axios";
 import { checkUserAccessToken, loginApiCall } from "./lib/auth";
 
 import { AuthContext } from './context/AuthContext';
 import { useAuth } from './hooks/useAuth';
+import Competition from "./pages/Competition";
+import Competitions from "./pages/Competitions";
 
 function App() {
 
@@ -34,14 +32,14 @@ function App() {
   console.log('pathname', location.pathname);
   console.log('search', location.search);
 
-  // check for callback code 
+  // check for callback code
 
   useEffect(()=>{
 
     const asyncCheckUserAccessToken = async () =>{
       let user = await checkUserAccessToken();
 
-      if (user) {        
+      if (user) {
         login(user);
         setUser(user);
       } else {
@@ -56,8 +54,8 @@ function App() {
     asyncCheckUserAccessToken().then((user) => {
       if (user == null && code !== null) {
 
-        /* 
-        todo:Erdem 
+        /*
+        todo:Erdem
         code nerden geliyor?, code geldikten sonra login olmak için
         gideceğimiz bir end point var mı?
         buradaki kurgunun şu olduğunu varsyarak aşağıdaki kod bloğunu ekliyorum.
@@ -82,8 +80,8 @@ function App() {
             //todo: login failed, show login failed message
           }
         }
-        
-        
+
+
         asyncCall();
 
       }
@@ -128,9 +126,9 @@ function App() {
         login(code).then((accessToken) => {
           console.log(accessToken)
         });
-        
+
       }
-  
+
     }).catch((reason) => {
       console.error(reason);
     });
@@ -144,10 +142,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/yarismalar" element={<Contests />} />
+          <Route path="/competitions" element={<Competitions />} />
+          <Route path="/competition" element={<Competition />} />
           <Route path="/hakkimizda" element={<About />} />
           <Route path="/iletisim" element={<Contact />} />
           <Route path="/sik-sorulan-sorular" element={<FAQ />} />
+
         </Routes>
 
       </Layout>

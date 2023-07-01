@@ -6,10 +6,12 @@ import { useUser } from '../hooks/useUser';
 const Navigation = () => {
 
 
-  const {user} =useUser();
+  const {user} = useUser();
+
+  const wcaAuthorizationUrl = `https://www.worldcubeassociation.org/oauth/authorize?response_type=code&scope=public+dob+email&client_id=ouXKX3BlCsI4r1k8hBpv1ctiJnV6_PfY8WsIktT_fhM&redirect_uri=${window.location.href}`
 
   console.log("Navigation User :", user);
-    
+
     return (
 
 
@@ -36,7 +38,7 @@ const Navigation = () => {
                 </ul>
               </div>
 
-              <li className="nav-item"><Link to="/yarismalar" className="nav-link" >Yarışmalar</Link></li>
+              <li className="nav-item"><Link to="/competitions" className="nav-link" >Yarışmalar</Link></li>
 
 
               <div className="dropdown">
@@ -54,7 +56,7 @@ const Navigation = () => {
               <li className="nav-item"><Link to="/sss" className="nav-link" href="faq.html">Sıkça Sorulan Sorular</Link></li>
               <li className="nav-item"><Link to="/iletisim" className="nav-link" href="#signup">İletişim</Link></li>
               {user==null &&(
-              <li className="nav-item"><Link to="https://www.worldcubeassociation.org/oauth/authorize?response_type=code&scope=public+dob+email&client_id=ouXKX3BlCsI4r1k8hBpv1ctiJnV6_PfY8WsIktT_fhM&redirect_uri=https://cubingtr.org" className="nav-link" >Giriş Yap</Link></li>
+              <li className="nav-item"><Link to={wcaAuthorizationUrl} className="nav-link" >Giriş Yap</Link></li>
               )}
 
               {user!=null &&(
@@ -64,30 +66,30 @@ const Navigation = () => {
                 <div style={
                   {
                     marginTop:'10px',
-                    width: "40px", 
+                    width: "40px",
                     height: "40px",
-                    display: 'inline-block', 
+                    display: 'inline-block',
                     verticalAlign: "middle",
-                    backgroundImage: `url(${user.avatar_thumb_url})`, 
+                    backgroundImage: `url(${user.avatar_thumb_url})`,
                     backgroundSize: 'contain',
                     backgroundRepeat:'no-repeat'
 
                     }}>
-                     
+
                 </div>
 
               </li>
-              
+
                </>
               )}
-              
+
 
             </ul>
           </div>
         </div>
       </nav>
 
-      
+
     );
 };
 export default Navigation;

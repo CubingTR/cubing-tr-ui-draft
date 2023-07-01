@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchAllFutureCompetitions, fetchAllPastCompetitions } from "../lib/apiComp";
 
-const Contests = () =>{
+const Competitions = () =>{
 
     const[futureCompetitions, setFutureCompetitions]=useState(null);
     const[pastCompetitions, setPastCompetitions]=useState(null);
@@ -16,16 +16,16 @@ const Contests = () =>{
         });
 
       }, []);
-    
+
       const renderCompetitions = (competitions) => {
         const result = [];
         for (const competition of competitions) {
-          result.push(<a href="registertocomp.html"><li className="list-group-item text-white bg-light">{competition.name} : {competition.year}-{competition.month}-{competition.day} </li></a>);
+          result.push(<a href="/competition?competition_id=AnkaraJuly2023"><li className="list-group-item text-white bg-light">{competition.name} : {competition.year}-{competition.month}-{competition.day} </li></a>);
         }
-    
+
         return <ul>{result}</ul>;
       };
-    
+
     return (
         <>
         <section className="about-section text-center">
@@ -64,11 +64,11 @@ const Contests = () =>{
             </div>
 
             <div className="list-group">
-              
+
             </div>
         </section>
         </>
     )
 }
 
-export default Contests;
+export default Competitions;
