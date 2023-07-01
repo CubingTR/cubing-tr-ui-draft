@@ -20,7 +20,8 @@ const Competitions = () =>{
       const renderCompetitions = (competitions) => {
         const result = [];
         for (const competition of competitions) {
-          result.push(<a href="/competition?competition_id=AnkaraJuly2023"><li className="list-group-item text-white bg-light">{competition.name} : {competition.year}-{competition.month}-{competition.day} </li></a>);
+            var link = "/competition?competition_id=" + competition.id;
+          result.push(<a href={link}><li className="list-group-item text-white bg-light">{competition.name} : {competition.year}-{competition.month}-{competition.day} </li></a>);
         }
 
         return <ul>{result}</ul>;

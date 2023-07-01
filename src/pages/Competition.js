@@ -21,15 +21,17 @@ const Competition = () =>{
     const renderEvents = (events) => {
         const result = [];
         for (const event of events) {
+            var elementId = "btn-check-outlined" + event.eventId;
+            event.isRegistered = false;
             result.push(
-                <div>
-                    <input type="checkbox" className="btn-check" id="btn-check-outlined" autoComplete="off" />
-                    <label className="btn btn-outline-info" htmlFor="btn-check-outlined"><span className="cubing-icon event-333"></span>3x3</label>
-                </div>
+                <>
+                    <input type="checkbox" className="btn-check" id={elementId} autoComplete="off" />
+                    <label className="btn btn-outline-info" htmlFor={elementId}><span className="cubing-icon event-333"></span>{event.wcaEventEntity.name}</label>
+                </>
             )
         }
 
-        return {result};
+        return <div>{result}</div>;
     };
 
     return (
