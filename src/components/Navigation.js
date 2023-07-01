@@ -8,7 +8,8 @@ const Navigation = () => {
 
   const {user} =useUser();
 
-  console.log("Navigation User :", user);
+  const loginUrl=`https://www.worldcubeassociation.org/oauth/authorize?response_type=code&scope=public+dob+email&client_id=ouXKX3BlCsI4r1k8hBpv1ctiJnV6_PfY8WsIktT_fhM&redirect_uri=${window.location.host}`
+  
     
     return (
 
@@ -53,8 +54,9 @@ const Navigation = () => {
               </div>
               <li className="nav-item"><Link to="/sss" className="nav-link" href="faq.html">Sıkça Sorulan Sorular</Link></li>
               <li className="nav-item"><Link to="/iletisim" className="nav-link" href="#signup">İletişim</Link></li>
+             
               {user==null &&(
-              <li className="nav-item"><Link to="https://www.worldcubeassociation.org/oauth/authorize?response_type=code&scope=public+dob+email&client_id=ouXKX3BlCsI4r1k8hBpv1ctiJnV6_PfY8WsIktT_fhM&redirect_uri=https://cubingtr.org" className="nav-link" >Giriş Yap</Link></li>
+              <li className="nav-item"><Link to={loginUrl} className="nav-link" >Giriş Yap</Link></li>
               )}
 
               {user!=null &&(
